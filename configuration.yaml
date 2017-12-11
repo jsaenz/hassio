@@ -32,7 +32,7 @@ http:
 
 #Ring doorbell configuration
 ring:
-  username: saenzrugby@gmail.com
+  username: !secret ring_username
   password: !secret ring_password
 
 binary_sensor:
