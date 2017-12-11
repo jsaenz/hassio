@@ -5,3 +5,9 @@
 !.gitignore
 secrets.yaml
 known_devices.yaml
+OZW_Log.txt
+pyozw.sqlite
+zwcfg_0xf0867361.xml
+plex.conf
+home-assistant_v2.db
+home-assistant.log
