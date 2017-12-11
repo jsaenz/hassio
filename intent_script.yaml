@@ -1,0 +1,10 @@
+WhereAreWeIntent:
+  - title: Who's at home?
+    text: >
+      {%- if is_state('device_tracker.9889da36354a425058', 'home') and
+             is_state('device_tracker.fadd5ae5', 'home') -%}
+         You are both home, you silly
+      {%- else -%}
+            Jon is at {{ states("device_tracker.9889da36354a425058") }}
+            and Rachel is at {{ states("device_tracker.fadd5ae5") }}
+      {% endif %}
