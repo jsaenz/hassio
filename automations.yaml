@@ -1,0 +1,107 @@
+- id: all_light_on_sundown
+  alias: 'Turn all lights on at sunset'
+  initial_state: 'on'
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '-00:45:00'
+  action:
+     service: switch.turn_on
+     data:
+       entity_id: group.all_switches
+
+- id: all_light_off_night_week
+  alias: 'Turn all lights off at night during week'
+  initial_state: 'on'
+  trigger:
+    platform: time
+    at: '23:04:00'
+  condition:
+    condition: time
+    weekday:
+      - sun
+      - mon
+      - tue
+      - wed
+      - thu
+  action:
+     service: switch.turn_off
+     data:
+       entity_id: group.all_switches
+
+- id: all_light_off_night_weekend
+  alias: 'Turn all lights off at night during weekend'
+  initial_state: 'on'
+  trigger:
+    platform: time
+    at: '2:00:00'
+  condition:
+    condition: time
+    weekday:
+      - fri
+      - sat
+  action:
+     service: switch.turn_off
+     data:
+       entity_id: group.all_switches
+
+#- id: kitchen_light_off_morning
+#  alias: 'Turn on kitchen lights off at night'
+#  initial_state: 'off'
+#  trigger:
+#    - platform: state
+#      entity_id:
+#        - switch.ge_12727_inwall_smart_switch_toggle_switch
+#      from: 'on'
+#      to: 'off'
+#  condition:
+#    - condition: time
+#      after: '10:45:00'
+#    - condition: state
+#      entity_id: switch.ge_12727_inwall_smart_switch_toggle_switch
+#      state: 'off'
+#  action:
+#     service: switch.ge_12727_inwall_smart_switch_toggle_switchturn_off.turn_off
+#     data:
+#       entity_id: switch.ge_12727_inwall_smart_switch_toggle_switch
+
+#- id: kitchen_light_off_morning
+#  alias: Kitchen lights off at night
+#  initial_state: 'on'
+#  trigger:
+#    platform: sun
+#    event: sunset
+#    offset: "00:45:00"
+#  action:
+#    - service: kitchen.turn_on
+#      entity_id:
+#        - kitchen
+
+#- id: outdoor_light_off
+#  alias: Outdoor light Off
+#  initial_state: 'on'
+#  trigger:
+#    platform: sun
+#    event: sunset
+#    offset: "01:30:00"
+#  action:
+#    - service: switch.turn_off
+#      entity_id:
+#        - switch.driveway
+
+#- id: driveway_light_off_during_the_day
+#  alias: Driveway light Off during the day
+#  initial_state: 'on'
+#  trigger:
+#    platform: state
+#    entity_id: switch.driveway
+#    to: 'on'
+#  condition:
+#    - condition: state
+#      entity_id: sun.sun
+#      state: 'above_horizon'
+#  action:
+#    - service: switch.turn_off
+#      entity_id:
+#        - switch.driveway
+#        - switch.wemoporch
