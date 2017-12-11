@@ -9,5 +9,6 @@ OZW_Log.txt
 pyozw.sqlite
 zwcfg_0xf0867361.xml
 plex.conf
-home-assistant_v2.db
+home-assistant_v2.db-shm
+home-assistant_v2.dn-wal
 home-assistant.log
